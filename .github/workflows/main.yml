@@ -13,9 +13,6 @@ jobs:
         with:
           image:s ynobuild
           options: --rm --privileged --env PACKAGE_ARCH=<arch> --env DSM_VER=<dsm-ver> -v $(pwd)/artifacts:/result_spk
-          run: |
-            composer install
-            npm install
-            npm run production
+          run:
       - name: Verify assets
         run: ls -l dist
