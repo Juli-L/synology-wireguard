@@ -1,16 +1,18 @@
-name: Create
+name: Run test suite
+on: push
+
 jobs:
-  compile:
-    name: Compile assets
+  run-tests:
+    name: Run PHPUnit tests
     runs-on: ubuntu-latest
+    container:
+      image: synobuild
+      volumes:
+        - ${{ github.workspace }}:/app
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Run Docker container to compile assets
-        uses: addnab/docker-run-action@v3
-        with:
-          image:s ynobuild
-          options: --rm --privileged --env PACKAGE_ARCH=<arch> --env DSM_VER=<dsm-ver> -v $(pwd)/artifacts:/result_spk
-          run:
-      - name: Verify assets
-        run: ls -l dist
+      - name: Running composer install
+        run: composer install
+      - name: Running phpunit
+        run: ./vendor/bin/phpunit te
