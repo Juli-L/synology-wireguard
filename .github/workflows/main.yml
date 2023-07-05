@@ -2,11 +2,15 @@ name: Run test suite
 on: push
 
 jobs:
-  build docker:
-    name: build
-      runs-on: ubuntu-latest
-      steps:
-        sudo docker build -t synobuild .
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build -t synobuild .
+      
   run-tests:
     name: Run
     runs-on: ubuntu-latest
