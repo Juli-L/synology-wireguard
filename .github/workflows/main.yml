@@ -1,6 +1,4 @@
 name: Create
-on: push
-
 jobs:
   compile:
     name: Compile assets
