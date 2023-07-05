@@ -9,7 +9,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name : Buil Docker
-      - run : docker build -t synobuild .
+        run : docker build -t synobuild .
       - name: Run Docker container to compile assets
         uses: addnab/docker-run-action@v3
         with:
